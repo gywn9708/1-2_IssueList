@@ -10,7 +10,6 @@ export const ListContext = createContext({
 
 export const ListContextProvider = ({ children }) => {
   const [issueList, setIssueList] = useState([]);
-  const [issue, setIssue] = useState([]);
 
   const handleIssueList = useCallback(() => {
     getIssueList()
@@ -23,23 +22,8 @@ export const ListContextProvider = ({ children }) => {
       });
   }, []);
 
-  useEffect(() => {
-    handleIssueList();
-  }, [handleIssueList]);
-
-  const handleIssue = useCallback((number) => {
-    getIssue(number)
-      .then((res) => {
-        console.log("res", res);
-        setIssue(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
-
   return (
-    <ListContext.Provider value={{ issueList, issue, handleIssue }}>
+    <ListContext.Provider value={{ issueList, handleIssueList }}>
       {children}
     </ListContext.Provider>
   );
