@@ -19,13 +19,15 @@ const IssueItemContainer = styled.div`
   }
 `;
 
-const AdvertisementContainer = styled.div`
+const AdvertisementContainer = styled.a`
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
   color: black;
   padding: 2rem;
   border-bottom: 1px solid black;
+  gap: 10px;
 `;
 
 const S = {

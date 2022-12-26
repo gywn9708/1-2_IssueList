@@ -5,7 +5,6 @@ import { getIssue, getIssueList } from "../api";
 
 export const ListContext = createContext({
   issueList: [],
-  issue: [],
 });
 
 export const ListContextProvider = ({ children }) => {
@@ -23,7 +22,7 @@ export const ListContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <ListContext.Provider value={{ issueList, handleIssueList }}>
+    <ListContext.Provider value={{ issueList, setIssueList, handleIssueList }}>
       {children}
     </ListContext.Provider>
   );
