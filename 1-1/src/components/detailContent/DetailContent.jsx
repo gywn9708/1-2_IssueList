@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-
 import { useParams } from "react-router";
 import { getIssue } from "../../api";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import S from "./styles";
+import dateFormat from "../../utils/dateFormat";
 
 const DetailContent = () => {
   const [issue, setIssue] = useState([]);
   const { number } = useParams();
+  const date = dateFormat(issue?.created_at);
 
   useEffect(() => {
     getIssue(number)
@@ -32,7 +33,7 @@ const DetailContent = () => {
             {issue?.number} {issue?.title}
             <br />
             <span>
-              작성자: {issue?.user?.login}, 작성일: {issue?.created_at}
+              작성자: {issue?.user?.login}, 작성일: {date}
             </span>
           </div>
         </div>
