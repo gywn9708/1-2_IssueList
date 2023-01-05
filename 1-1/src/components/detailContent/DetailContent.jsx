@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import { getIssue } from "../../api";
+import { useNavigate, useParams } from "react-router";
+import { getIssue } from "../../apis/apis";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import S from "./styles";
 import dateFormat from "../../utils/dateFormat";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const DetailContent = () => {
   const [issue, setIssue] = useState([]);
-  const { number } = useParams();
   const date = dateFormat(issue?.created_at);
+  const { number } = useParams();
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     getIssue(number)
       .then((res) => {
+        if (res.state !== "open") navigate("/error");
         console.log("res", res);
         setIssue(res);
+        setLoading(false);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch(() => {
+        navigate("/error");
       });
   }, [number]);
 
-  console.log("number", number);
-  console.log("issue봐라", issue);
+  if (loading)
+    return (
+      <S.LoadingContainer>
+        <LoadingSpinner />
+      </S.LoadingContainer>
+    );
   return (
     <S.DetailContentContainer>
       <S.DetailContentHeader>

@@ -10,7 +10,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:number" element={<Detail />} />
-        <Route path="/*" element={<Error />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );

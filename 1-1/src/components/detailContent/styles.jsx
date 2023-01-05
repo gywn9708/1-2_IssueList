@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+const LoadingContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const DetailContentContainer = styled.div`
   img {
     width: 100px;
@@ -31,6 +38,11 @@ const DetailContentBody = styled.div`
   padding: 0 2rem;
 `;
 
-const S = { DetailContentContainer, DetailContentHeader, DetailContentBody };
+const S = {
+  LoadingContainer,
+  DetailContentContainer,
+  DetailContentHeader,
+  DetailContentBody,
+};
 
 export default S;
